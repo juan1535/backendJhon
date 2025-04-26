@@ -1,1 +1,38 @@
 <h1>Productos</h1>
+
+<form action="">
+
+    <div class="form-item nombre">
+        <label for="nombre" class="form-label">Nombre</label>
+        <input type="text" class="form-control" id="nombre" name="nombre" required>
+    </div>
+
+    <div class="form-item descripcion">
+        <label for="descripcion" class="form-label">Descripción</label>
+        <input type="text" class="form-control" id="descripcion" name="descripcion" required>
+    </div>
+
+    <div class="form-item descripcion">
+        <label for="precio" class="form-label">Precio</label>
+        <input type="number" class="form-control" id="precio" name="precio" required>
+    </div>
+
+    <div class="form-item categoria-id">
+        
+        <label for="categoria_id" class="form-label">Categoría</label>
+
+        <select class="form-select" id="categoria_id" name="categoria_id" required>
+
+            <option value="" disabled selected>Seleccione una categoría</option>
+            <!-- Aquí se llenarán las categorías desde el backend -->
+            <option value="1">Categoría 1</option>
+            <option value="2">Categoría 2</option>
+            <option value="3">Categoría 3</option>
+
+        </select>
+    </div>
+
+
+    <button type="submit" class="btn btn-sumit">Guardar</button>
+
+</form>

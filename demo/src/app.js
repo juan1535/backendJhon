@@ -1,4 +1,6 @@
 import "./css/main.css";
+import { router } from "./router/router";
+
 
 const app = document.querySelector('#app');
 
@@ -28,18 +30,7 @@ header.append(itemsHeader_content);
 //app.appendChild(header);
 
 
-const cargarView = async () => {
-
-    // console.log(location);
-    const hash = location.hash.slice(1); //eliminar el # de la url
-    // console.log(hash);
-    const response = await fetch(`./src/views/${hash}/index.html`);
-    const html = await response.text();
-    // console.log(html);
-
-    app.innerHTML= html;
-
-}
+//cargarView(app); //cargar la vista por defecto al cargar la pagina
 
 
 // window.addEventListener('hashchange', () => {
@@ -47,4 +38,7 @@ const cargarView = async () => {
 //     console.log('se modifico la ruta');
 // });
 
-window.addEventListener('hashchange', cargarView);
+window.addEventListener('hashchange', () => {
+
+    router(app);
+});
