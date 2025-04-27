@@ -5,11 +5,11 @@ import { categoriaController } from "../views/categorias/categoriaControllers.js
 const routes = {
 
     productos: {
-        "template": "?",
+        "template": "productos/index.html",
         controlador: productoController
     },
     categorias: {
-        "template": "?",
+        "template": "categorias/index.html",
         controlador: categoriaController
     }
 
@@ -18,17 +18,27 @@ const routes = {
 export const router = async (app) => {
 
     const hash = location.hash.slice(1); //eliminar el # de la url
+    const {template, controlador} = matchRoute(hash); //comprobar si la ruta existe
+    //console.log(match);
     
-    cargarView(app, hash); //cargar la vista por defecto al cargar la pagina
+    //llamando la vista
+    cargarView(app, template); //cargar la vista por defecto al cargar la pagina
+    //ejecutar el controlador
+    //?
 
 }
 
-const matchRoute = () => { 
+const matchRoute = (hash) => { 
     
     for (const route in routes) {
     
-        console.log(route, "= ", hash);
+        //
+        // console.log(route, "= ", hash);
         
+        if (route === hash) {
+            console.log("la ruta existe");
+            return routes[route]; //retorna la ruta que coincide con el hash
+        }
     }
     
 }
