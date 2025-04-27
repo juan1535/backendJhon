@@ -26,7 +26,6 @@ export const router = async (app) => {
     //ejecutar el controlador
     //?
 
-
 }
 
 const matchRoute = (hash) => { 
