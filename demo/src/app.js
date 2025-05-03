@@ -25,7 +25,21 @@ linkProductos.setAttribute('href', '#productos');
 
 itemsHeader_content.append(linkCategorias, linkProductos);
 
-header.append(itemsHeader_content);
+//.......... #1.2 Creación de logo con enlace a la pagina principal
+const logo = document.createElement('a');
+logo.classList.add('logo');
+logo.setAttribute('href', '/#');
+
+const logo_img = document.createElement('img');
+logo_img.classList.add('logo-img');
+logo_img.setAttribute('src', 'src/assets/logo.png');
+logo_img.setAttribute('alt', 'logo de la tienda');
+
+logo.appendChild(logo_img);
+
+header.append(logo, itemsHeader_content);
+
+
 
 //app.appendChild(header);
 
@@ -39,6 +53,11 @@ header.append(itemsHeader_content);
 // });
 
 window.addEventListener('hashchange', () => {
+
+    router(app);
+});
+
+window.addEventListener('DOMContentLoaded', () => {
 
     router(app);
 });
