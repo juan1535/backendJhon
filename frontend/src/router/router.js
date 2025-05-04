@@ -32,17 +32,16 @@ export const router = async (app) => {
     const hash = location.hash.slice(1); //eliminar el # de la url
     const {template, controlador} = matchRoute(hash); //comprobar si la ruta existe
     //console.log(match);
-    controlador();
     //llamando la vista
-    cargarView(app, template); //cargar la vista por defecto al cargar la pagina
+    await cargarView(app, template); //cargar la vista por defecto al cargar la pagina
     //ejecutar el controlador
     //?
 
+    // Ejecutar el controlador
+    controlador(); // Ejecutar el controlador después de cargar la vista
 }
 
 const matchRoute = (hash) => { 
-
-
     
     
     for (const route in routes) {
