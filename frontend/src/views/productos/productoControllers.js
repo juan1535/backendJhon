@@ -1,5 +1,7 @@
 export const productoController = async () => {
 
+    await new Promise (requestAnimationFrame);
+
     const responseProductos = await fetch("http://localhost:3000/api/productos");
     const {data: productos} = await responseProductos.json();
 
@@ -53,32 +55,13 @@ export const productoController = async () => {
         btnEditar.classList.add('btn', 'btn-primary', 'btn-sm', 'me-2');
         btnEditar.addEventListener('click', () => {
 
-            // Activar modo edición
-            editando = true;
-            productoEditado = Producto;
-
-            // Cargar datos en el formulario
-            document.getElementById('nombre').value = Producto.nombre;
-            document.getElementById('descripcion').value = Producto.descripcion;
-            document.getElementById('precio').value = Producto.precio;
-            document.getElementById('categoria_id').value = Producto.categoria_id;
-
-            // Cambiar texto del botón
-            const btnSubmit = document.querySelector('form button[type="submit"]');
-            btnSubmit.textContent = 'Actualizar';
-
         });
 
         const btnEliminar = document.createElement('button');
         btnEliminar.textContent = 'Eliminar';
         btnEliminar.classList.add('btn', 'btn-danger', 'btn-sm');
         btnEliminar.addEventListener('click', async () => {
-            const confirmacion = confirm('¿Estás seguro de que deseas eliminar este producto?');
-            if (confirmacion) {
-                await fetch(`http://localhost:3000/api/productos/${Producto.id}`, { method: 'DELETE' });
-                alert('Producto eliminado exitosamente');
-                location.reload();
-            }
+
         });
 
         // Agregar los botones a la celda de acciones
@@ -102,45 +85,45 @@ export const productoController = async () => {
 
     cargarTabla();
     
-    form.addEventListener('submit', async (e) => {
+    // form.addEventListener('submit', async (e) => {
 
-        e.preventDefault();
+    //     e.preventDefault();
 
-        const producto = {
+    //     const producto = {
 
-            nombre: document.getElementById('nombre').value,
-            descripcion: document.getElementById('descripcion').value,
-            precio: parseFloat(document.getElementById('precio').value),
-            categoria_id: parseInt(document.getElementById('categoria_id').value),
-        };
+    //         nombre: document.getElementById('nombre').value,
+    //         descripcion: document.getElementById('descripcion').value,
+    //         precio: parseFloat(document.getElementById('precio').value),
+    //         categoria_id: parseInt(document.getElementById('categoria_id').value),
+    //     };
 
-        if (editando) {
-            // Actualizar producto
-            await fetch(`http://localhost:3000/api/productos/${productoEditado.id}`, {
-                method: 'PUT',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(producto),
-            });
+    //     if (editando) {
+    //         // Actualizar producto
+    //         await fetch(`http://localhost:3000/api/productos/${productoEditado.id}`, {
+    //             method: 'PUT',
+    //             headers: { 'Content-Type': 'application/json' },
+    //             body: JSON.stringify(producto),
+    //         });
 
-            alert('Producto actualizado exitosamente');
+    //         alert('Producto actualizado exitosamente');
 
-        } else {
-            // Crear producto
-            await fetch('http://localhost:3000/api/productos', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(producto),
-            });
+    //     } else {
+    //         // Crear producto
+    //         await fetch('http://localhost:3000/api/productos', {
+    //             method: 'POST',
+    //             headers: { 'Content-Type': 'application/json' },
+    //             body: JSON.stringify(producto),
+    //         });
             
-            alert('Producto creado exitosamente');
-        }
+    //         alert('Producto creado exitosamente');
+    //     }
 
-        // Resetear formulario y estado
-        form.reset();
-        editando = false;
-        productoEditado = null;
-        document.querySelector('form button[type="submit"]').textContent = 'Guardar';
+    //     // Resetear formulario y estado
+    //     form.reset();
+    //     editando = false;
+    //     productoEditado = null;
+    //     document.querySelector('form button[type="submit"]').textContent = 'Guardar';
 
-        location.reload(); // Recargar la página para actualizar la tabla
-    });
+    //     location.reload(); // Recargar la página para actualizar la tabla
+    // });
 }

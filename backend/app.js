@@ -15,7 +15,7 @@ dotenv.config();
 const app = express();
 // Middleware
 // Habilita CORS
-app.use(cors()); 
+app.use(cors()); //permite ingresar datos de cualquier origen (externo a mi dominio)
 // Permite que la app acepte datos JSON
 app.use(bodyParser.json()); 
 // app.use(express.json());

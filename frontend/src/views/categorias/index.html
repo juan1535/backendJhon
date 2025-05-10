@@ -3,13 +3,13 @@
 <form action="">
 
     <div class="form-item nombre">
-        <label for="nombre" class="form-label">Nombre</label>
-        <input type="text" class="form-control" id="nombre" name="nombre" required>
+        <label id="nombre" for="nombre" class="form-label">Nombre</label>
+        <input type="text" class="form-control" id="nombre" name="nombre" minlength="6" maxlength="100" required>
     </div>
 
     <div class="form-item descripcion">
-        <label for="descripcion" class="form-label">Descripción</label>
-        <input type="text" class="form-control" id="descripcion" name="descripcion" required>
+        <label id="descripcion" for="descripcion" class="form-label">Descripción</label>
+        <input type="text" class="form-control" id="descripcion" name="descripcion" minlength="6" maxlength="100" required>
     </div>
 
     <button type="submit" class="btn btn-sumit">Guardar</button>

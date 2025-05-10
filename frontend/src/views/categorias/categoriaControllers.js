@@ -1,11 +1,17 @@
 export const categoriaController = async () => {
 
+    await new Promise (requestAnimationFrame);
+
     const response = await fetch("http://localhost:3000/api/categorias");
     const {data} = await response.json();
             
     // const tbody = document.getElementById('categorias-list');
 
     console.log(data);
+
+    const form = document.querySelector('form');
+    const nombre = document.getElementById('nombre');
+    const descripcion = document.getElementById('descripcion');
 
     const crearFila = (categoria) => {
 
@@ -48,6 +54,36 @@ export const categoriaController = async () => {
 
     cargarTabla();
 
+    const guardar = (e) => {
+
+        e.preventDefault();
+
+        const data = {
+            nombre: nombre.value,
+            descripcion: descripcion.value
+        }
+
+        fetch("http://localhost:3000/api/categorias", {
+
+            method: 'POST',
+            body: JSON.stringify(data),
+            // ({
+            //   title: 'foo',
+            //   body: 'bar',
+            //   userId: 1,
+            // }),
+            headers: {
+              'Content-type': 'application/json; charset=UTF-8',
+            },
+        })
+        .then((response) => response.json())
+        .then((json) => console.log(json));
+
+        form.reset(); // Limpiar el formulario
+
+    }
+
+    form.addEventListener('submit', guardar)
     //tbody.appendChild(fragment);
             
     //return categorias
