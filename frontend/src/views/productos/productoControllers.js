@@ -84,46 +84,15 @@ export const productoController = async () => {
     };
 
     cargarTabla();
-    
-    // form.addEventListener('submit', async (e) => {
 
-    //     e.preventDefault();
+    /**
+     * Función para guardar un nuevo producto
+     * @param {*} e - Evento de envío del formulario
+     */
+    const guardar = (e) => {
 
-    //     const producto = {
+        
+    }
 
-    //         nombre: document.getElementById('nombre').value,
-    //         descripcion: document.getElementById('descripcion').value,
-    //         precio: parseFloat(document.getElementById('precio').value),
-    //         categoria_id: parseInt(document.getElementById('categoria_id').value),
-    //     };
-
-    //     if (editando) {
-    //         // Actualizar producto
-    //         await fetch(`http://localhost:3000/api/productos/${productoEditado.id}`, {
-    //             method: 'PUT',
-    //             headers: { 'Content-Type': 'application/json' },
-    //             body: JSON.stringify(producto),
-    //         });
-
-    //         alert('Producto actualizado exitosamente');
-
-    //     } else {
-    //         // Crear producto
-    //         await fetch('http://localhost:3000/api/productos', {
-    //             method: 'POST',
-    //             headers: { 'Content-Type': 'application/json' },
-    //             body: JSON.stringify(producto),
-    //         });
-            
-    //         alert('Producto creado exitosamente');
-    //     }
-
-    //     // Resetear formulario y estado
-    //     form.reset();
-    //     editando = false;
-    //     productoEditado = null;
-    //     document.querySelector('form button[type="submit"]').textContent = 'Guardar';
-
-    //     location.reload(); // Recargar la página para actualizar la tabla
-    // });
+    form.addEventListener('submit', guardar)
 }
