@@ -35,6 +35,15 @@ export const categoriaController = async () => {
         const btnEliminar = document.createElement('button');
         btnEliminar.textContent = 'Eliminar';
         btnEliminar.classList.add('btn', 'btn-danger', 'btn-sm');
+        btnEliminar.addEventListener('click', async () => {
+            const confirmacion = confirm (`¿Deseas Eliminar el elemento ${categoria.nombre}?`);
+            if (confirmacion) {
+                fetch(`http://localhost:3000/api/categorias/${categoria.id}`, {
+                    method: 'DELETE',
+                });
+
+            }
+        });
 
         // Agregar los botones a la celda de acciones
         cellAcciones.append(btnEditar, btnEliminar);
@@ -54,6 +63,11 @@ export const categoriaController = async () => {
 
     cargarTabla();
 
+    /**
+     * Función para guardar una nueva categoría --------------------------------------->
+     * @param {Event} e - Evento de envío del formulario
+     */
+
     const guardar = (e) => {
 
         e.preventDefault();
@@ -63,15 +77,13 @@ export const categoriaController = async () => {
             descripcion: descripcion.value
         }
 
+        console.log("Valor de nombre:", nombre.value);
+        console.log("Valor de descripcion:", descripcion.value);
+
         fetch("http://localhost:3000/api/categorias", {
 
             method: 'POST',
             body: JSON.stringify(data),
-            // ({
-            //   title: 'foo',
-            //   body: 'bar',
-            //   userId: 1,
-            // }),
             headers: {
               'Content-type': 'application/json; charset=UTF-8',
             },
@@ -84,8 +96,5 @@ export const categoriaController = async () => {
     }
 
     form.addEventListener('submit', guardar)
-    //tbody.appendChild(fragment);
-            
-    //return categorias
 }
 
